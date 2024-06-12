@@ -107,6 +107,98 @@
                     }
                 }
             }
+        },
+        "/api/v2/posts/{id}/update-status": {
+            "patch": {
+                "tags": [
+                    "v2 Posts"
+                ],
+                "summary": "Update post status",
+                "operationId": "75cafd06a2129b460802ee2a8c3443db",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "description": "Statuses: [0 - hidden, 1 - active]",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The post status was updated"
+                    },
+                    "404": {
+                        "description": "The post not found"
+                    },
+                    "422": {
+                        "description": "Incorrect status"
+                    }
+                }
+            }
+        },
+        "/api/v2/posts": {
+            "get": {
+                "tags": [
+                    "v2 Posts"
+                ],
+                "summary": "List all active posts",
+                "operationId": "10939d936d1312830d962fd4e78ca5ce",
+                "responses": {
+                    "200": {
+                        "description": "posts retrieved success"
+                    }
+                }
+            }
+        },
+        "/api/v2/posts/{id}": {
+            "get": {
+                "tags": [
+                    "v2 Posts"
+                ],
+                "summary": "Single Post",
+                "operationId": "4e9d62403f8605081b56362ed1aebe05",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "the post retrieved success"
+                    },
+                    "404": {
+                        "description": "the post not found"
+                    }
+                }
+            }
         }
     }
 }
