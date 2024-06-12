@@ -1,0 +1,112 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test Api Documentation",
+        "description": "api",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Local server"
+        },
+        {
+            "url": "https://test.dijoy.net",
+            "description": "Staging server"
+        }
+    ],
+    "paths": {
+        "/api/v1/posts/{id}/update-status": {
+            "patch": {
+                "tags": [
+                    "v1 Posts"
+                ],
+                "summary": "Update post status",
+                "operationId": "cdae5cb2f59b0cf11eb4daed33682168",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "description": "Statuses: [0 - hidden, 1 - active]",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The post status was updated"
+                    },
+                    "404": {
+                        "description": "The post not found"
+                    },
+                    "422": {
+                        "description": "Incorrect status"
+                    }
+                }
+            }
+        },
+        "/api/v1/posts": {
+            "get": {
+                "tags": [
+                    "v1 Posts"
+                ],
+                "summary": "List all active posts",
+                "operationId": "74f5938736730f550751f0d7c8816511",
+                "responses": {
+                    "200": {
+                        "description": "posts retrieved success"
+                    }
+                }
+            }
+        },
+        "/api/v1/posts/{id}": {
+            "get": {
+                "tags": [
+                    "v1 Posts"
+                ],
+                "summary": "Single Post",
+                "operationId": "9d84922bc2a57ca3a51f65c1d737364b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "the post retrieved success"
+                    },
+                    "404": {
+                        "description": "the post not found"
+                    }
+                }
+            }
+        }
+    }
+}
